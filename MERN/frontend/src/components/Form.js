@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 
 export default function Form() {
 
@@ -19,7 +20,8 @@ export default function Form() {
     });
     console.log(response);
     const message = response.data.post;
-    alert(message);
+
+    Swal.fire({ icon: 'success', title: message });
   }
 
   return (
@@ -40,7 +42,7 @@ export default function Form() {
         <div className="mb-3">
           <label htmlFor="tags" className="form-label">Tags</label>
           <input type="text" className="form-control" id="tags" required onChange={e => setTags(e.target.value)} />
-        </div>        
+        </div>
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     </div>
