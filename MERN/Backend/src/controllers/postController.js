@@ -10,9 +10,9 @@ postCtrl.create = async (req, res) => {
     const permalink = crypto.randomBytes(16).toString("base64Url");
     const date = new Date().toISOString();
     const postToSave = { ...req.body, date, permalink };
-
-    const createdPost = await postModel.create(postToSave);
-    res.status(201).json({ post: createdPost });
+    console.log(postToSave);
+    //const createdPost = await postModel.create(postToSave);
+    res.status(201).json({ post: "createdPost" });
 };
 
 postCtrl.update = (req, res) => {

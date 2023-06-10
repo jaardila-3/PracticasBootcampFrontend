@@ -11,6 +11,7 @@ export default function Form() {
   const registerPost = async (e) => {
     e.preventDefault();
     const newPost = { title, author, body, tags };
+    console.log(JSON.stringify(newPost));
     const response = await fetch('http://localhost:3001/api', {
       method: 'POST',
       headers: {
@@ -19,9 +20,10 @@ export default function Form() {
       body: JSON.stringify(newPost)
     });
     console.log(response);
-    const message = response.data.post;
+    const message = response.statusText;
 
-    Swal.fire({ icon: 'success', title: message });
+    Swal.fire({ icon: 'success', title: message })
+      .then(() => { window.location.reload(); });
   }
 
   return (
