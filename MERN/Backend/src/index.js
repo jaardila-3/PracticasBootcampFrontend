@@ -8,7 +8,7 @@ const PORT = 3001;
 const app = express();
 
 // Global Middlewares
-//app.use(express.json());
+app.use(express.json());
 app.use(morgan('dev')); //registra información sobre las solicitudes HTTP
 
 // Routes
