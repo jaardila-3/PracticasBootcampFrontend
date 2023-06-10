@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 
-export default function Form() {
+export default function PostForm() {
 
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
@@ -11,7 +11,6 @@ export default function Form() {
   const registerPost = async (e) => {
     e.preventDefault();
     const newPost = { title, author, body, tags };
-    console.log(JSON.stringify(newPost));
     const response = await fetch('http://localhost:3001/api', {
       method: 'POST',
       headers: {
@@ -19,10 +18,13 @@ export default function Form() {
       },
       body: JSON.stringify(newPost)
     });
-    console.log(response);
-    const message = response.statusText;
+    const data = await response.json();
+    const message = data.post;
 
-    Swal.fire({ icon: 'success', title: message })
+    Swal.fire({
+      icon: 'success', title: "creado",
+      text: `creado el post: ${message?.title} con el id: ${message?._id}`
+    })
       .then(() => { window.location.reload(); });
   }
 

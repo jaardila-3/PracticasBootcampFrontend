@@ -1,9 +1,9 @@
-import Form from "./components/Form";
+import PostForm from "./components/posts/postForm";
 
 function App() {
   return (
     <div className="App">
-      <Form/>
+      <PostForm/>
     </div>
   );
 }

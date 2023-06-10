@@ -1,19 +1,21 @@
 import { Router } from "express";
 import postCtrl from "../controllers/postController.js";
-import crypto from "crypto"; //genera una cadena aleatoria codificada en base64Url.
 
 const postRouter = Router();
 
 // Read All
 postRouter.get("/", postCtrl.getAll);
 
+// Read One
+postRouter.get("/:id", postCtrl.getOne);
+
 // Create
 postRouter.post("/", postCtrl.create);
 
 // Update
-postRouter.put("/", postCtrl.update);
+postRouter.patch("/:id", postCtrl.update);
 
 // Delete
-postRouter.delete("/", postCtrl.delete);
+postRouter.delete("/:id", postCtrl.delete);
 
 export default postRouter;

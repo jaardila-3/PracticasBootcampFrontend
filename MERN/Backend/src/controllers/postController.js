@@ -1,9 +1,17 @@
-import crypto from 'crypto';
+import crypto from 'crypto'; //genera una cadena aleatoria codificada en base64Url.
+import { postModel } from '../models/postModel.js';
 
 const postCtrl = {};
 
-postCtrl.getAll = (req, res) => {
-    res.send("working get");
+postCtrl.getAll = async (req, res) => {
+    // mongosse sort desc by date
+    const posts = await postModel.find({}).sort({ date: -1 }).limit(5);
+    res.status(200).json({ posts });
+};
+
+postCtrl.getOne = async (req, res) => {
+    const post = await postModel.findOne({ _id: req.params.id });
+    res.status(200).json({ post });
 };
 
 postCtrl.create = async (req, res) => {
@@ -11,16 +19,25 @@ postCtrl.create = async (req, res) => {
     const date = new Date().toISOString();
     const postToSave = { ...req.body, date, permalink };
     console.log(postToSave);
-    //const createdPost = await postModel.create(postToSave);
-    res.status(201).json({ post: "createdPost" });
+    const createdPost = await postModel.create(postToSave); // create: mongoose ODM method
+    res.status(201).json({ post: createdPost });
 };
 
-postCtrl.update = (req, res) => {
-    res.send("working update");
+postCtrl.update = async (req, res) => {
+    const id = req.params.id;
+    const data = req.body;
+
+    const updatedPost = await postModel
+        .findOneAndUpdate({ _id: id }, data, { new: true, });
+
+    res.status(200).json({ post: updatedPost });
 };
 
-postCtrl.delete = (req, res) => {
-    res.send("working delete");
+postCtrl.delete = async (req, res) => {
+    const deletedPost = await postModel.findOneAndDelete({
+        _id: req.params.id,
+    });
+    res.status(200).json({ post: deletedPost });
 };
 
 export default postCtrl;
