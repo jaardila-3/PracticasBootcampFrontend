@@ -10,22 +10,37 @@ export default function PostForm() {
 
   const registerPost = async (e) => {
     e.preventDefault();
-    const newPost = { title, author, body, tags };
-    const response = await fetch('http://localhost:3001/api', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newPost)
-    });
-    const data = await response.json();
-    const message = data.post;
+    try {
+      const newPost = { title, author, body, tags };
+      const response = await fetch('http://localhost:3001/api', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newPost)
+      });
+      //console.log("response ", response);
+      if (!response.ok) {
+        throw new Error("Error HTTP: " + response.statusText);
+      }
 
-    Swal.fire({
-      icon: 'success', title: "creado",
-      text: `creado el post: ${message?.title} con el id: ${message?._id}`
-    })
-      .then(() => { window.location.reload(); });
+      const data = await response.json();
+      const message = data.post;
+
+      Swal.fire({
+        icon: 'success', title: "creado",
+        text: `creado el post: ${message?.title} con el id: ${message?._id}`
+      })
+        .then(() => { window.location.reload(); });
+    } catch (error) {
+      //console.log("error ", error);
+      Swal.fire({
+        icon: 'error', title: "Error",
+        text: `Error en la creación del post: ${error.message}`
+      })
+        .then(() => { window.location.reload(); });
+    }
+
   }
 
   return (
