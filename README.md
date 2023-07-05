@@ -4,7 +4,7 @@ Esta aplicación fue desarrollada utilizando el stack MERN de JavaScript.
 
 ## Backend
 En el backend, se utilizó Express con algunos middlewares y MongoDB Atlas para la gestión de la base de datos, con la respectiva URI de conexión.
-se configuran los CORS middlewares.
+se configuran los CORS middlewares. Se utiliza arquitectura MVC.
 
 ## Frontend
 En el frontend, se utilizó React y Node.js, se utiliza bootstrap 5 para estilizar y sweetAlert2.
