@@ -12,7 +12,7 @@ export default function PostForm() {
     e.preventDefault();
     try {
       const newPost = { title, author, body, tags };
-      const response = await fetch('http://localhost:3001/api', {
+      const response = await fetch('http://localhost:3001/api/posts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
