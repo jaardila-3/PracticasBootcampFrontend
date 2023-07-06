@@ -65,4 +65,4 @@ En consola: curl --request GET http://localhost:3001/api/posts/64a725669808ac512
 En consola: curl --request POST http://localhost:3001/api/posts --header 'Content-Type: application/json' --data '{ "title": "PRUEBA CURL 24", "author": "jorge ardila", "body": "espacio destinado para el articulo", "tags": "vida" }'
 ```
 
-#### Recuerda utilizar una consola o termina adecuada para las consultas con CURL.
+#### Recuerda utilizar una consola o terminal adecuada para las consultas con CURL.
