@@ -24,7 +24,7 @@ La aplicación cuenta con un componente "post" que tiene un formulario donde el 
 
 ![Alt text](image.png)
 
--sweetAlert2
+- sweetAlert2
 
 ![Alt text](image-5.png)
 
@@ -37,12 +37,32 @@ La aplicación cuenta con un componente "post" que tiene un formulario donde el 
 
 - localhost:3001
 
+```
+En consola: curl --request GET http://localhost:3001 --header "Content-Type: application/json"
+```
+
 ![Alt text](image-2.png)
 
-- listado de post
+- listado de posts
+
+```
+En consola: curl --request GET http://localhost:3001/api/posts --header "Content-Type: application/json"
+```
 
 ![Alt text](image-3.png)
 
 - post por id
 
+```
+En consola: curl --request GET http://localhost:3001/api/posts/64a725669808ac512c4ce04b --header "Content-Type: application/json"
+```
+
 ![Alt text](image-4.png)
+
+- Crear post por medio del verbo HTTP POST
+
+```
+En consola: curl --request POST http://localhost:3001/api/posts --header 'Content-Type: application/json' --data '{ "title": "PRUEBA CURL 24", "author": "jorge ardila", "body": "espacio destinado para el articulo", "tags": "vida" }'
+```
+
+#### Recuerda utilizar una consola o termina adecuada para las consultas con CURL.
