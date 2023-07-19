@@ -8,6 +8,8 @@ export default function PostForm() {
   const [body, setBody] = useState('');
   const [tags, setTags] = useState([]);
 
+  const handleChange = (setState) => (event) => { setState(event.target.value); };
+
   const registerPost = async (e) => {
     e.preventDefault();
     try {
@@ -48,19 +50,19 @@ export default function PostForm() {
       <form className='border p-3 mt-1' onSubmit={registerPost}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">Title</label>
-          <input type="text" className="form-control" id="title" required onChange={e => setTitle(e.target.value)} />
+          <input type="text" className="form-control" id="title" required onChange={handleChange(setTitle)} />
         </div>
         <div className="mb-3">
           <label htmlFor="author" className="form-label">Author</label>
-          <input type="text" className="form-control" id="author" required onChange={e => setAuthor(e.target.value)} />
+          <input type="text" className="form-control" id="author" required onChange={handleChange(setAuthor)} />
         </div>
         <div className="mb-3">
           <label htmlFor="body" className="form-label">Body</label>
-          <textarea className="form-control" id="body" rows="4" required onChange={e => setBody(e.target.value)}></textarea>
+          <textarea className="form-control" id="body" rows="4" required onChange={handleChange(setBody)}></textarea>
         </div>
         <div className="mb-3">
           <label htmlFor="tags" className="form-label">Tags</label>
-          <input type="text" className="form-control" id="tags" required onChange={e => setTags(e.target.value)} />
+          <input type="text" className="form-control" id="tags" required onChange={handleChange(setTags)} />
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
